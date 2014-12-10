@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+    <name>PanDOI</name>
+    <namespace>pandoi.pangaea</namespace>
+    <version>1.0.5</version>
+    <author name="Rainer Sieger">
+        <info url="http://www.pangaea.de" text="www.pangaea.de" />
+        <logo src="logo.png" />
+    </author>
+    <copyright>&#169; 2011 PANGAEA</copyright>
+    <description>A Handle URI Resolver</description>
+    <icons>
+        <icon height="80" width="80" src="logo.png" />
+    </icons>
+    <hosts>
+        <host name="sidebar">
+            <base type="HTML" apiVersion="1.0.0" src="pandoi.html" />
+            <permissions>full</permissions>
+            <platform minPlatformVersion="1.0" />
+        </host>
+    </hosts>
+</gadget>

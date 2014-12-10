@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!--
+Rainer Sieger
+PANGAEA
+Alfred Wegener Institute Bremerhaven
+2011-06-15
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PanDOI</title>
+
+<style type="text/css">
+body {
+	margin: 0px;
+	width: 230px;
+	height: 75px;
+	background-image: url(default.png);
+	background-repeat: no-repeat;
+}
+#header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 45px;
+	width: 230px;
+	cursor: help;
+}
+#searchPane {
+	position: absolute;
+    top: 45px;
+    left: 5px;
+    width: 220px; 
+    height: 30px; 
+}
+#search-field
+{
+	font: 11px Verdana;
+	margin-left: 0px;
+	margin-top: 0px;
+	display: inline-block;
+	overflow: hidden;
+}
+</style>
+
+<script type='text/javascript' src='pandoi.js' charset='utf-8'/>
+</head>
+<body>
+  <div id="header" onmousedown="return headerClick(this)";></div>
+  <div id="searchPane">
+	<div id="search-field"><input type="search" size="38" placeholder="" results="10" onsearch="srch(this.value);" /></div>
+  </div>
+</body>
+</html>

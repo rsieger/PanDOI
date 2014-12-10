@@ -1,0 +1,124 @@
+<!--
+Rainer Sieger
+PANGAEA
+Alfred Wegener Institute Bremerhaven
+2011-04-29
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PanDOI</title>
+
+<style type="text/css">
+body {
+	margin: 0;
+	width: 130px;
+	height: 75px;
+	background-image: url(Default.png);
+	background-repeat: no-repeat;
+}
+.search {
+	position: absolute;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	width: 115px;
+	height: 22px;
+	top: 45px;
+	left: 7px;
+	background-color: #e0e0e0;
+	border: 1px solid #000000;
+}
+.header {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 45px;
+	width: 130px;
+	cursor: help;
+}
+</style>
+
+<script language="JavaScript" type="text/javascript">
+var shell = new ActiveXObject( "WScript.Shell" );
+
+function openWindow() 
+{ 
+  var value = escape( form.query.value ); 
+  var url   = "";
+  
+  if ( value.length < 1 )
+    value = "http://www.pangaea.de";
+	
+  if ( parseInt( value ) == value )
+    value = "doi:10.1594/PANGAEA." + value;
+
+  while ( value.indexOf( "%09" ) > -1 )  // tab
+    value = value.replace( "%09", "" );
+
+  while ( value.lastIndexOf( "%20" ) == value.length-3  )  // blank at end
+	value = value.slice( 0, value.length-3 );
+
+  while ( value.indexOf( "%20" ) > -1 )  // blank
+    value = value.replace( "%20", "+" );
+
+  while ( value.indexOf( "%3A" ) > -1 )  // :
+    value = value.replace( "%3A", ":" );
+
+  while ( value.indexOf( "%2F" ) > -1 )  // /
+    value = value.replace( "%2F", "/" );
+
+  value = value.toLowerCase();
+
+  if ( value.substr( 0, 7 ) == "doi:10." )
+  {
+      if ( value.substr( 0, 20 ) == "doi:10.1594/pangaea." )
+        url = "http://doi.pangaea.de/" + value.substr( 4 );
+      else
+        url = "http://dx.doi.org/" + value.substr( 4 );
+  }
+  
+  if ( value.substr( 0, 4 ) == "hdl:" )
+    url = "http://hdl.handle.net/" + value.substr( 4 );
+
+  if ( value.substr( 0, 5 ) == "sref:" )
+    url = "http://direct.sref.org/" + value.substr( 5 );
+
+  if ( value.substr( 0, 7 ) == "urn:nbn" )
+    url = "http://nbn-resolving.de/" + value;
+
+  if ( value.substr( 0, 7 ) == "http://" )
+    url = value;
+
+  if ( ( value == "l" ) || ( value == "latest" ) )
+    url = "http://www.pangaea.de/tools/latest-datasets.rss";
+
+  if ( value.substr( 0, 2 ) == "l+" ) 
+    url = "http://www.pangaea.de/tools/latest-datasets.rss?q=" + value.substr( 2 );
+	
+  if ( value.substr( 0, 7 ) == "latest+" )
+    url = "http://www.pangaea.de/tools/latest-datasets.rss?q=" + value.substr( 7 );
+
+  if ( url.substr( 0, 7 ) != "http://" )
+    url = "http://www.pangaea.de/search?q=" + value;
+
+  shell.Run( url ); 
+  
+  return false;
+}
+
+function headerClick() 
+{ 
+  shell.Run( "http://wiki.pangaea.de/wiki/PanDOI" ); 
+  
+  return false; 
+}
+
+</script>
+</head>
+
+<body>
+  <div class="header" onmousedown="return headerClick(this)";></div>
+  <form onsubmit="return openWindow(this)" action="" id="form">
+    <input name="query" type="text" class="search"; this.focus(); />
+  </form>
+</body>
+</html>
