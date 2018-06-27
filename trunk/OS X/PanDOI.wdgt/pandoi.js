@@ -34,7 +34,7 @@ function srch(s)
       if ( value.substr( 0, 20 ) == "doi:10.1594/pangaea." )
         url = "http://doi.pangaea.de/" + value.substr( 4 );
       else
-        url = "http://dx.doi.org/" + value.substr( 4 );
+        url = "https://doi.org/" + value.substr( 4 );
   }
   
   if ( value.substr( 0, 4 ) == "hdl:" )
